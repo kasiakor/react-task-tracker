@@ -1,7 +1,10 @@
+import Button from "./Button";
+
 function Header({ title }) {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1 className="header">{title}</h1>
+      <Button text="add" color="green" />
     </div>
   );
 }
