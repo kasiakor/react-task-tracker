@@ -24,10 +24,17 @@ function App() {
     },
   ]);
 
+  // pass current tasks and return a new tasks state
+  const deleteTask = (id) => {
+    setTasks((tasks) => {
+      return tasks.filter((task) => task.id !== id);
+    });
+  };
+
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} onDelete={deleteTask} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import Task from "./Task";
 
-function Tasks({ tasks }) {
+function Tasks({ tasks, onDelete }) {
   return (
     <>
-      {tasks.map((task) => {
-        return <Task key={task.id} task={task} />;
+      {tasks?.map((task) => {
+        return <Task key={task.id} task={task} onDelete={onDelete} />;
       })}
     </>
   );
