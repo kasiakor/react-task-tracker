@@ -25,16 +25,41 @@ function App() {
   ]);
 
   // pass current tasks and return a new tasks state
+  // delete Task
   const deleteTask = (id) => {
     setTasks((tasks) => {
       return tasks.filter((task) => task.id !== id);
     });
   };
 
+  // toggle Reminder
+  const toggleReminder = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      )
+    );
+
+    // or
+    // setTasks((tasks) => {
+    //   return tasks.map((task) => {
+    //     if (task.id === id) {
+    //       return { ...task, reminder: !task.reminder };
+    //     }
+    //     return task;
+    //   });
+    // });
+  };
+
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks} onDelete={deleteTask} />
+      {/* {tasks.length === 0 && "No tasks to track"} */}
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
+      ) : (
+        "No tasks to track "
+      )}
     </div>
   );
 }
