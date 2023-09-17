@@ -53,10 +53,16 @@ function App() {
     // });
   };
 
+  const addTask = (task) => {
+    // const id = Math.floor(Math.random() * 10000) + 1;
+    // console.log(id);
+    setTasks([...tasks, { id: crypto.randomUUID(), ...task }]);
+    console.log(tasks);
+  };
   return (
     <div className="container">
       <Header />
-      <AddTask />
+      <AddTask onAdd={addTask} />
       {/* {tasks.length === 0 && "No tasks to track"} */}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
