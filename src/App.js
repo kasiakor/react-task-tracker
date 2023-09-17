@@ -5,6 +5,7 @@ import AddTask from "./components/AddTask";
 import { useState } from "react";
 
 function App() {
+  const [showAddTaskForm, setShowAddTaskForm] = useState(false);
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -59,10 +60,15 @@ function App() {
     setTasks([...tasks, { id: crypto.randomUUID(), ...task }]);
     console.log(tasks);
   };
+
+  const toggleForm = () => {
+    setShowAddTaskForm((showForm) => !showForm);
+  };
+
   return (
     <div className="container">
-      <Header />
-      <AddTask onAdd={addTask} />
+      <Header toggleForm={toggleForm} />
+      {showAddTaskForm && <AddTask onAdd={addTask} />}
       {/* {tasks.length === 0 && "No tasks to track"} */}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
