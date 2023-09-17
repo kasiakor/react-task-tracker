@@ -2,11 +2,19 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
   const [tasks, setTasks] = useState([]);
+
+  // Fetch data
+
+  useEffect(() => {
+    fetch("http://localhost:5000/tasks")
+      .then((response) => response.json())
+      .then((data) => setTasks(data));
+  }, []);
 
   // pass current tasks and return a new tasks state
   // delete Task
